@@ -35,4 +35,4 @@ git push -u origin brief/<what-you-are-changing>
 gh pr create --fill
 ```
 
-Notes for agents working in this repo live in [AGENTS.md](AGENTS.md) — OpenCode reads it automatically.
+Notes for agents working in this repo live in [AGENTS.md](AGENTS.md) — OpenCode reads it automatically. The full setup-and-workflow guide, written for a second person joining the repo, is [CONTRIBUTING.md](CONTRIBUTING.md).
