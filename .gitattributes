@@ -1,0 +1,27 @@
+# Normalize line endings on commit: LF in the repository, native in each working copy.
+# Without this, a contributor on macOS and one on Windows produce whole-file diffs.
+* text=auto
+
+# Text files: always LF in the repository
+*.md text
+*.txt text
+*.json text
+*.jsonc text
+*.yml text
+*.yaml text
+*.sh text eol=lf
+
+# Binary: never converted, never diffed
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.svg text
+*.pdf binary
+*.docx binary
+*.xlsx binary
+*.pptx binary
+
+# Markdown renders as prose on GitHub
+*.md linguist-detectable=true
