@@ -15,6 +15,7 @@ This repository holds the product brief for **ProBioLink**, a block-based profes
 - Push the branch and open a PR (`gh pr create --fill`). The other person reviews and squash-merges. Do not merge your own PR unless the user tells you to.
 - One branch, one topic. Keep commits small and scoped to the section being changed.
 - **Never force-push, never rewrite history, never rebase `main`.** If a push is rejected, pull and rebase your branch instead.
+- `main` is a protected branch: GitHub rejects direct pushes, force-pushes and deletion of it, for everyone including the owner. A rejected push means you forgot to branch — create the branch and push that instead. Squash merges only; the head branch is deleted on merge.
 
 ## Editing rules
 
