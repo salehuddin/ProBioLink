@@ -1,5 +1,18 @@
 ## Technical Considerations
 
+### Implemented Stack (prototype)
+
+The working prototype uses Laravel instead of Supabase. This is the stack the team agreed to build on:
+
+| Layer             | Choice                                           |
+| ----------------- | ------------------------------------------------ |
+| Backend           | Laravel 13, JSON API under `/api`                |
+| Frontend          | React 19, TanStack Router, TanStack Query        |
+| Styling and build | Tailwind CSS 4, Vite 8                           |
+| Database          | SQLite locally; MySQL or Postgres when shared    |
+
+The specification below is the original proposal, kept for reference. Where the two disagree, the prototype is what exists.
+
 ### Core Technology Decisions
 
 ┌─────────────────────────────────────────────────────┐
