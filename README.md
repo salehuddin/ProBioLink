@@ -4,6 +4,8 @@ Product brief for a block-based professional profile builder — link-in-bio sim
 
 The brief is split into one file per top-level section so two people can work at the same time without editing the same lines. Read in order, or jump to the part you own.
 
+The working prototype lives in [`prototype/`](prototype/README.md) — a Laravel API with a React/TanStack SPA and server-rendered public profiles. `docs/` stays prose only; code changes belong in that folder.
+
 | #   | Section                 | What it covers                                              | File                                                                     |
 | --- | ----------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------ |
 | 01  | Executive Summary       | Product name, one-paragraph pitch, target users             | [01-executive-summary.md](docs/01-executive-summary.md)                  |

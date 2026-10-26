@@ -1,11 +1,12 @@
 # Project instructions
 
-This repository holds the product brief for **ProBioLink**, a block-based professional profile builder (link-in-bio simplicity, resume-level depth). It is a **documentation-only repo**: Markdown, no application code, no build step, no tests. Two people edit it concurrently, each often through an agent. The rules below exist to keep their changes from colliding.
+This repository holds the product brief for **ProBioLink**, a block-based professional profile builder (link-in-bio simplicity, resume-level depth), and the working prototype in `prototype/`. The brief — `docs/` — is documentation only: Markdown, no build step, no tests. Two people edit it concurrently, each often through an agent. The rules below exist to keep their changes from colliding.
 
 ## Layout
 
 - `README.md` — index of the brief, and the short version of the workflow.
 - `docs/NN-topic.md` — one top-level section of the brief per file. The number is the reading order.
+- `prototype/` — the Laravel + React application. Its own rules live in `prototype/AGENTS.md`; `php artisan test` and `npm run build` must pass before it is pushed.
 - `AGENTS.md` — this file.
 
 ## Git workflow (do not skip)
