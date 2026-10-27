@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use App\Support\Templates;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class PublicProfileController extends Controller
@@ -38,5 +40,21 @@ class PublicProfileController extends Controller
             'description' => $description,
             'jsonLd' => $jsonLd,
         ]);
+    }
+
+    public function cv(string $username): Response
+    {
+        $profile = Profile::query()
+            ->where('username', $username)
+            ->where('is_published', true)
+            ->with('blocks')
+            ->firstOrFail();
+
+        $pdf = Pdf::loadView('profile.cv', [
+            'profile' => $profile,
+            'blocks' => $profile->blocks->where('is_visible', true),
+        ])->setPaper('a4');
+
+        return $pdf->download("{$profile->username}-cv.pdf");
     }
 }

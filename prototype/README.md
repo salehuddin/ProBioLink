@@ -43,6 +43,8 @@ Open <http://127.0.0.1:8000>. The seeder creates one demo profile, `amir`, owned
 | `/u/amir` | Public profile — **server-rendered by Laravel**, no JavaScript required |
 | `/editor/amir` | Editor — requires sign-in; profile details, template, presets, blocks |
 | `/login` | Sign-in form |
+| `/signup` | Create an account and a started profile |
+| `/u/amir/cv.pdf` | The profile exported as an A4 PDF resume |
 | `/robots.txt`, `/sitemap.xml` | Crawler discovery — published profiles only |
 
 ### Why the public profile is not React
@@ -62,6 +64,7 @@ Every response is wrapped in `data`.
 | `GET` | `/api/profiles` | — | Published profiles (username, name, headline) |
 | `GET` | `/api/profiles/{username}` | — | Profile with ordered blocks |
 | `GET` | `/api/me` | required | Current user |
+| `POST` | `/register` | — | Create an account, a profile and its starting blocks |
 | `PATCH` | `/api/profiles/{username}` | owner | Update display name, headline, location, template |
 | `POST` | `/api/profiles/{username}/presets` | owner | Replace all blocks with a preset (`job_seeker`, `freelancer`) |
 | `POST` | `/api/profiles/{username}/blocks` | owner | Add a block of a given type |
@@ -114,7 +117,7 @@ These are deliberate — the skeleton is meant to grow into them:
 - **No drag-and-drop.** Reordering is arrow buttons; `dnd-kit` is the intended upgrade.
 - **Two presets, three templates.** The brief describes five presets and four template categories; the extra ones are unbuilt.
 - **Applying a preset replaces every block** after an inline confirmation. There is no merge or undo.
-- **No registration, password reset or email verification.** Accounts are created by the seeder or by hand; the demo password is public knowledge and must be changed before any real deployment.
+- **No password reset or email verification.** Sign-up is open; the seeded demo account's password is public knowledge and must be changed before any real deployment.
 - **One profile per user.** The schema allows more, but nothing creates a second profile and the editor assumes one.
 - **SQLite locally.** Fine for one developer; switch `DB_CONNECTION` before two people share a database.
 - **No browser tests.** The API and server-rendered pages have feature tests; the SPA has none.

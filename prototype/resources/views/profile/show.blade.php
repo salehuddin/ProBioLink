@@ -54,6 +54,8 @@
 
                 <footer class="pt-6 text-center text-xs {{ $theme['mutedText'] }}">
                     Made with <a href="{{ url('/') }}" class="underline-offset-4 hover:underline">ProBioLink</a>
+                    &nbsp;·&nbsp;
+                    <a href="{{ route('profile.cv', $profile->username) }}" class="underline-offset-4 hover:underline">Download CV (PDF)</a>
                 </footer>
             </article>
         </main>

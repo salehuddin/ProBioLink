@@ -95,6 +95,13 @@ function LoginPage() {
                 </button>
             </form>
 
+            <p className="text-xs text-zinc-500">
+                No profile yet?{' '}
+                <Link to="/signup" className="text-indigo-300 hover:text-indigo-200">
+                    Create one in a minute
+                </Link>
+            </p>
+
             <p className="text-xs text-zinc-600">
                 Seeded demo account: amir@example.com / password
             </p>

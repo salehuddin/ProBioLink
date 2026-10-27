@@ -116,6 +116,52 @@ class AuthTest extends TestCase
         $this->asBrowser()->getJson('/api/me')->assertUnauthorized();
     }
 
+    public function test_a_visitor_can_register_and_gets_a_started_profile(): void
+    {
+        $response = $this->asBrowser()->postJson('/register', [
+            'name' => 'Nadia Rahman',
+            'username' => 'Nadia-R',
+            'email' => 'nadia@example.com',
+            'password' => 'secret-password',
+            'password_confirmation' => 'secret-password',
+            'preset' => 'freelancer',
+        ]);
+
+        $response->assertCreated()
+            ->assertJsonPath('data.profile.username', 'nadia-r')
+            ->assertJsonPath('data.profile.preset', 'freelancer');
+
+        $profile = Profile::where('username', 'nadia-r')->firstOrFail();
+
+        $this->assertSame('Nadia Rahman', $profile->display_name);
+        $this->assertSame(6, $profile->blocks()->count());
+        $this->assertAuthenticated();
+    }
+
+    public function test_registration_requires_a_unique_username(): void
+    {
+        $this->profileFor(User::factory()->create());
+
+        $this->asBrowser()->postJson('/register', [
+            'name' => 'Someone Else',
+            'username' => 'amir',
+            'email' => 'other@example.com',
+            'password' => 'secret-password',
+            'password_confirmation' => 'secret-password',
+        ])->assertStatus(422)->assertJsonValidationErrors('username');
+    }
+
+    public function test_registration_requires_a_long_enough_password(): void
+    {
+        $this->asBrowser()->postJson('/register', [
+            'name' => 'Short Pass',
+            'username' => 'shorty',
+            'email' => 'short@example.com',
+            'password' => 'short',
+            'password_confirmation' => 'short',
+        ])->assertStatus(422)->assertJsonValidationErrors('password');
+    }
+
     public function test_the_owner_is_the_only_one_who_can_apply_a_preset(): void
     {
         $owner = User::factory()->create();

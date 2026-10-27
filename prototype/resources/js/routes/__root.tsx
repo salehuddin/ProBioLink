@@ -51,17 +51,23 @@ function RootLayout() {
                             Sign out
                         </button>
                     </span>
-                ) : location.pathname === '/login' ? (
-                    <span className="text-xs text-zinc-600">
-                        Editor access
-                    </span>
+                ) : location.pathname === '/login' || location.pathname === '/signup' ? (
+                    <span className="text-xs text-zinc-600">Editor access</span>
                 ) : (
-                    <Link
-                        to="/login"
-                        className="rounded-md border border-white/10 px-2.5 py-1 text-xs text-zinc-300 transition hover:border-indigo-400/50 hover:text-indigo-200"
-                    >
-                        Sign in
-                    </Link>
+                    <span className="flex items-center gap-3">
+                        <Link
+                            to="/signup"
+                            className="rounded-md bg-indigo-500 px-2.5 py-1 text-xs font-medium text-white transition hover:bg-indigo-400"
+                        >
+                            Get started
+                        </Link>
+                        <Link
+                            to="/login"
+                            className="text-xs text-zinc-400 transition hover:text-zinc-200"
+                        >
+                            Sign in
+                        </Link>
+                    </span>
                 )}
             </nav>
 

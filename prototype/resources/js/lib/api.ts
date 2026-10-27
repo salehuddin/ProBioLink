@@ -103,6 +103,27 @@ export async function login(
     return payload.data;
 }
 
+export interface RegisterPayload {
+    name: string;
+    username: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+    preset: string;
+}
+
+export async function register(
+    values: RegisterPayload,
+): Promise<{ user: AuthUser; profile: Profile }> {
+    const payload = await request<{ data: { user: AuthUser; profile: Profile } }>(
+        '/register',
+        { method: 'POST', body: JSON.stringify(values) },
+        '',
+    );
+
+    return payload.data;
+}
+
 export async function logout(): Promise<void> {
     await request('/logout', { method: 'POST' }, '');
 }

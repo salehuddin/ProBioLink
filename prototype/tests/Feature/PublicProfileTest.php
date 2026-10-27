@@ -90,6 +90,24 @@ class PublicProfileTest extends TestCase
         $this->get('/u/amir')->assertNotFound();
     }
 
+    public function test_it_downloads_the_profile_as_a_pdf_cv(): void
+    {
+        $this->publishedProfile();
+
+        $response = $this->get('/u/amir/cv.pdf');
+
+        $response->assertOk();
+        $this->assertSame('application/pdf', $response->headers->get('Content-Type'));
+        $this->assertStringStartsWith('%PDF', $response->getContent());
+    }
+
+    public function test_the_cv_of_an_unpublished_profile_is_not_found(): void
+    {
+        $this->publishedProfile(['is_published' => false]);
+
+        $this->get('/u/amir/cv.pdf')->assertNotFound();
+    }
+
     public function test_profile_content_is_escaped(): void
     {
         $profile = $this->publishedProfile();

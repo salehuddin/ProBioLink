@@ -86,12 +86,20 @@ function EditorPage() {
                     onBlocksChange={setPreviewBlocks}
                 />
 
-                <a
-                    href={`/u/${username}`}
-                    className="inline-block text-xs text-zinc-500 underline-offset-4 hover:text-zinc-300 hover:underline"
-                >
-                    Open public profile (server-rendered)
-                </a>
+                <div className="flex flex-wrap items-center gap-4">
+                    <a
+                        href={`/u/${username}`}
+                        className="text-xs text-zinc-500 underline-offset-4 hover:text-zinc-300 hover:underline"
+                    >
+                        Open public profile
+                    </a>
+                    <a
+                        href={`/u/${username}/cv.pdf`}
+                        className="text-xs text-zinc-500 underline-offset-4 hover:text-zinc-300 hover:underline"
+                    >
+                        Download CV (PDF)
+                    </a>
+                </div>
             </section>
 
             <aside className="h-fit min-w-0 rounded-2xl border border-white/10 bg-white/[0.02] p-4">
