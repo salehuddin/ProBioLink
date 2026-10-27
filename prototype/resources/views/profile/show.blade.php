@@ -52,6 +52,41 @@
                     </section>
                 @endforeach
 
+                @php
+                    $input = 'w-full rounded-lg border bg-transparent px-3 py-2 text-sm outline-none '.$theme['hairline'];
+                @endphp
+                <section class="{{ $theme['card'] }}" id="contact">
+                    <h3 class="text-xs font-medium tracking-[0.2em] uppercase {{ $theme['labelText'] }}">
+                        Send an inquiry
+                    </h3>
+
+                    @if (session('inquiry_sent'))
+                        <p class="mt-3 text-sm {{ $theme['accentText'] }}">
+                            Thanks — your message is on its way. You'll get a reply by email.
+                        </p>
+                    @else
+                        <form method="POST" action="{{ route('profile.inquire', $profile->username) }}" class="mt-3 space-y-3">
+                            @csrf
+                            <input type="text" name="website" value="" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+
+                            <div class="grid gap-3 sm:grid-cols-2">
+                                <input name="name" value="{{ old('name') }}" placeholder="Your name" required class="{{ $input }}" aria-label="Your name">
+                                <input name="email" type="email" value="{{ old('email') }}" placeholder="you@email.com" required class="{{ $input }}" aria-label="Your email">
+                            </div>
+                            <input name="service" value="{{ old('service') }}" placeholder="What do you need? (optional)" class="{{ $input }}" aria-label="What do you need">
+                            <textarea name="message" rows="3" placeholder="Tell them what you need" required class="{{ $input }}" aria-label="Message">{{ old('message') }}</textarea>
+
+                            @error('message')
+                                <p class="text-xs {{ $theme['accentText'] }}">{{ $message }}</p>
+                            @enderror
+
+                            <button type="submit" class="rounded-lg px-4 py-2 text-sm font-medium {{ $theme['accentSurface'] }}">
+                                Send inquiry
+                            </button>
+                        </form>
+                    @endif
+                </section>
+
                 <footer class="pt-6 text-center text-xs {{ $theme['mutedText'] }}">
                     Made with <a href="{{ url('/') }}" class="underline-offset-4 hover:underline">ProBioLink</a>
                     &nbsp;·&nbsp;

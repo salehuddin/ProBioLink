@@ -2,6 +2,7 @@ import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import { useState } from 'react';
 import { BlockEditor } from '../components/BlockEditor';
+import { Inbox } from '../components/Inbox';
 import { PresetPicker } from '../components/PresetPicker';
 import { ProfileDetails } from '../components/ProfileDetails';
 import { ProfileView } from '../components/ProfileView';
@@ -79,6 +80,8 @@ function EditorPage() {
                         setRevision((value) => value + 1);
                     }}
                 />
+
+                <Inbox username={profile.username} />
 
                 <BlockEditor
                     key={`${profile.username}-${revision}`}

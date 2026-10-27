@@ -147,6 +147,23 @@ export async function fetchProfile(username: string): Promise<Profile> {
 }
 
 /** Persists order, visibility and edited content in one transaction. */
+export interface Inquiry {
+    id: number;
+    name: string;
+    email: string;
+    service: string | null;
+    message: string;
+    created_at: string;
+}
+
+export async function fetchInquiries(username: string): Promise<Inquiry[]> {
+    const payload = await request<{ data: Inquiry[] }>(
+        `/profiles/${username}/inquiries`,
+    );
+
+    return payload.data;
+}
+
 export async function saveProfile(
     username: string,
     blocks: Block[],

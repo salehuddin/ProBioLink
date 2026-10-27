@@ -64,6 +64,7 @@ Every response is wrapped in `data`.
 | `GET` | `/api/profiles` | — | Published profiles (username, name, headline) |
 | `GET` | `/api/profiles/{username}` | — | Profile with ordered blocks |
 | `GET` | `/api/me` | required | Current user |
+| `GET` | `/api/profiles/{username}/inquiries` | owner | Inquiries received through the public form |
 | `POST` | `/register` | — | Create an account, a profile and its starting blocks |
 | `PATCH` | `/api/profiles/{username}` | owner | Update display name, headline, location, template |
 | `POST` | `/api/profiles/{username}/presets` | owner | Replace all blocks with a preset (`job_seeker`, `freelancer`) |
@@ -117,6 +118,7 @@ These are deliberate — the skeleton is meant to grow into them:
 - **No drag-and-drop.** Reordering is arrow buttons; `dnd-kit` is the intended upgrade.
 - **Two presets, three templates.** The brief describes five presets and four template categories; the extra ones are unbuilt.
 - **Applying a preset replaces every block** after an inline confirmation. There is no merge or undo.
+- **No email notifications.** Inquiries are stored and shown in the editor; nobody is emailed, so a missed login is a missed lead.
 - **No password reset or email verification.** Sign-up is open; the seeded demo account's password is public knowledge and must be changed before any real deployment.
 - **One profile per user.** The schema allows more, but nothing creates a second profile and the editor assumes one.
 - **SQLite locally.** Fine for one developer; switch `DB_CONNECTION` before two people share a database.
